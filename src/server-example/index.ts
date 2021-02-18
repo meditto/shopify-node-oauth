@@ -10,7 +10,7 @@ const shopifyOAuth = new ShopifyOAuth({
   apiKey: process.env.SHOPIFY_API_KEY ?? "",
   apiSecret: process.env.SHOPIFY_API_SECRET ?? "",
   clientCallbackURL: "https://e3042cae8515.ngrok.io/auth/callback", // make sure to change this
-});
+}); // you can also pass persistent storage handler as documented in the readme.
 
 const app = express();
 
