@@ -51,10 +51,16 @@ export default class ShopifyOAuth {
     handlers: HandleCallbackRequestCallbacks;
   }): Promise<void> {
     try {
-      const tokenData = await this.oAuthHandler.getAccessToken(query);
+      const tokenData = await this.oAuthHandler.getAccessTokenFromShopify(
+        query
+      );
       await handlers.onOAuthComplete(tokenData);
     } catch (e) {
       handlers.onError(e);
     }
+  }
+
+  async getAccessToken(shop: string): Promise<string> {
+    return (await this.oAuthHandler.getTokenData(shop)).access_token;
   }
 }

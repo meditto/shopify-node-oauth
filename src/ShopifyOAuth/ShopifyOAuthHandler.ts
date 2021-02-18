@@ -30,7 +30,9 @@ export default class ShopifyOAuthHandler {
     return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));
   }
 
-  async getAccessToken(query: CallbackQueryObject): Promise<TokenData> {
+  async getAccessTokenFromShopify(
+    query: CallbackQueryObject
+  ): Promise<TokenData> {
     this.verifyHmac(
       query.hmac,
       `code=${query.code}&shop=${query.shop}&state=${query.state}&timestamp=${query.timestamp}`
