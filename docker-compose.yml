@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  node-shopify-oauth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/app/src
+    container_name: node-shopify-oauth
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    command: yarn run-example

@@ -1,0 +1,23 @@
+{
+  "env": {
+    // "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "strict": ["error", "never"],
+    "@typescript-eslint/triple-slash-reference": 0
+  }
+}

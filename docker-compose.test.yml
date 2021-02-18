@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  node-shopify-oauth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/app/src
+    # expose:
+    #   - "4000"
+    # ports:
+    #   - "4000:4000"
+    command: yarn test:watch
