@@ -1,6 +1,6 @@
 {
   "name": "shopify-node-oauth",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Shopify OAuth helper library in node.js for public/custom apps",
   "keywords": [
     "shopify",
@@ -31,7 +31,8 @@
     "fix:format": "yarn prettier --write ./",
     "validate": "yarn run-p check:*",
     "validate:fix": "yarn run-p fix:* check:ts",
-    "prepublish": "yarn compile"
+    "prepublish": "yarn compile",
+    "postpublish": "yarn del dist"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",
