@@ -35,13 +35,10 @@ app.get("/", (req, res) => {
     query: req.query, // pass parsed query object from the request URL
     scopes: [
       // Add scope strings as needed, you can use AdminApiScopes exported from this library like so
-      AdminApiScopes.ProductListings,
-      AdminApiScopes.Products.Read,
-      AdminApiScopes.Products.Write,
-      AdminApiScopes.Customers.Read,
-      AdminApiScopes.Customers.Write,
-      AdminApiScopes.Orders.Read,
-      AdminApiScopes.Orders.Write,
+      AdminApiScopes.read_product_listings,
+      AdminApiScopes.write.products, // write access also implies read access
+      AdminApiScopes.write.customers,
+      AdminApiScopes.write.orders,
     ],
     handlers: {
       // provide a callback to handle the case when you have got the access-token
