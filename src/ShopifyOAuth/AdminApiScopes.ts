@@ -1,97 +1,61 @@
-export default {
-  Content: {
-    Read: "read_content",
-    Write: "write_content",
+const AdminScopesObject: AdminApiScopesObject = {
+  read: {
+    assigned_fulfillment_orders: "read_assigned_fulfillment_orders",
+    checkouts: "read_checkouts",
+    content: "read_content",
+    customers: "read_customers",
+    discounts: "read_discounts",
+    draft_orders: "read_draft_orders",
+    fulfillments: "read_fulfillments",
+    inventory: "read_inventory",
+    locales: "read_locales",
+    marketing_events: "read_marketing_events",
+    merchant_managed_fulfillment_orders:
+      "read_merchant_managed_fulfillment_orders",
+    orders: "read_orders",
+    price_rules: "read_price_rules",
+    products: "read_products",
+    reports: "read_reports",
+    resource_feedbacks: "read_resource_feedbacks",
+    script_tags: "read_script_tags",
+    shipping: "read_shipping",
+    themes: "read_themes",
+    third_party_fulfillment_orders: "read_third_party_fulfillment_orders",
+    translations: "read_translations",
+    users: "read_users",
   },
-  Themes: {
-    Read: "read_themes",
-    Write: "write_themes",
+  write: {
+    assigned_fulfillment_orders: "write_assigned_fulfillment_orders",
+    checkouts: "write_checkouts",
+    content: "write_content",
+    customers: "write_customers",
+    discounts: "write_discounts",
+    draft_orders: "write_draft_orders",
+    fulfillments: "write_fulfillments",
+    inventory: "write_inventory",
+    locales: "write_locales",
+    marketing_events: "write_marketing_events",
+    merchant_managed_fulfillment_orders:
+      "write_merchant_managed_fulfillment_orders",
+    orders: "write_orders",
+    price_rules: "write_price_rules",
+    products: "write_products",
+    reports: "write_reports",
+    resource_feedbacks: "write_resource_feedbacks",
+    script_tags: "write_script_tags",
+    shipping: "write_shipping",
+    themes: "write_themes",
+    third_party_fulfillment_orders: "write_third_party_fulfillment_orders",
+    translations: "write_translations",
+    users: "write_users",
   },
-  Products: {
-    Read: "read_products",
-    Write: "write_products",
-  },
-  ProductListings: "read_product_listings",
-  Customers: {
-    Read: "read_customers",
-    Write: "write_customers",
-  },
-  Orders: {
-    Read: "read_orders",
-    Write: "write_orders",
-  },
-  ReadAllOrders: "read_all_orders",
-  WriteOrderEdits: "write_order_edits",
-  DraftOrders: {
-    Read: "read_draft_orders",
-    Write: "write_draft_orders",
-  },
-  Inventory: {
-    Read: "read_inventory",
-    Write: "write_inventory",
-  },
-  ReadLocations: "read_locations",
-  ScriptTag: {
-    Read: "read_script_tags",
-    Write: "write_script_tags",
-  },
-  Fulfillments: {
-    Read: "read_fulfillments",
-    Write: "write_fulfillments",
-  },
-  FulfillmentOrders: {
-    Read: "read_assigned_fulfillment_orders",
-    Write: "write_assigned_fulfillment_orders",
-  },
-  MerchantFulfillmentOrders: {
-    Read: "read_merchant_managed_fulfillment_orders",
-    Write: "write_merchant_managed_fulfillment_orders",
-  },
-  ThirdPartyFulfillmentOrders: {
-    Read: "read_third_party_fulfillment_orders",
-    Write: "write_third_party_fulfillment_orders",
-  },
-  Shipping: {
-    Read: "read_shipping",
-    Write: "write_shipping",
-  },
-  ReadAnalytics: "read_analytics",
-  User: {
-    Read: "read_users",
-    Write: "write_users",
-  },
-  Checkouts: {
-    Read: "read_checkouts",
-    Write: "write_checkouts",
-  },
-  Reports: {
-    Read: "read_reports",
-    Write: "write_reports",
-  },
-  PriceRules: {
-    Read: "read_price_rules",
-    Write: "write_price_rules",
-  },
-  Discounts: {
-    Read: "read_discounts",
-    Write: "write_discounts",
-  },
-  MarketingEvents: {
-    Read: "read_marketing_events",
-    Write: "write_marketing_events",
-  },
-  ResourceFeedbacks: {
-    Read: "read_resource_feedbacks",
-    Write: "write_resource_feedbacks",
-  },
-  ReadShopifyPaymentsPayouts: "read_shopify_payments_payouts",
-  ReadShopifyPaymentsDisputes: "read_shopify_payments_disputes",
-  Translations: {
-    Read: "read_translations",
-    Write: "write_translations",
-  },
-  Locales: {
-    Read: "read_locales",
-    Write: "write_locales",
-  },
+  read_all_orders: "read_all_orders",
+  read_analytics: "read_analytics",
+  read_locations: "read_locations",
+  read_product_listings: "read_product_listings",
+  read_shopify_payments_disputes: "read_shopify_payments_disputes",
+  read_shopify_payments_payouts: "read_shopify_payments_payouts",
+  write_order_edits: "write_order_edits",
 };
+
+export default AdminScopesObject;

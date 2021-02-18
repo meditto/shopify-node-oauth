@@ -23,13 +23,10 @@ app.get(
     shopifyOAuth.handleInstallRequest({
       query: req.query,
       scopes: [
-        AdminApiScopes.ProductListings,
-        AdminApiScopes.Products.Read,
-        AdminApiScopes.Products.Write,
-        AdminApiScopes.Customers.Read,
-        AdminApiScopes.Customers.Write,
-        AdminApiScopes.Orders.Read,
-        AdminApiScopes.Orders.Write,
+        AdminApiScopes.read_product_listings,
+        AdminApiScopes.write.products, // write access also implies read access
+        AdminApiScopes.write.customers,
+        AdminApiScopes.write.orders,
       ],
       handlers: {
         async onInstalled() {

@@ -24,7 +24,7 @@ export default class ShopifyOAuth {
     handlers,
   }: {
     query: InstallRequestQueryObject;
-    scopes: Scopes;
+    scopes: AdminScopes[];
     handlers: HandleInstallRequestCallbacks;
   }): Promise<void> {
     try {

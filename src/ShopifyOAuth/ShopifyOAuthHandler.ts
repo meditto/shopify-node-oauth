@@ -24,7 +24,7 @@ export default class ShopifyOAuthHandler {
     shop,
     timestamp,
     scopes,
-  }: InstallRequestQueryObject & { scopes: Scopes }): Promise<string> {
+  }: InstallRequestQueryObject & { scopes: AdminScopes[] }): Promise<string> {
     this.verifyHmac(hmac, `shop=${shop}&timestamp=${timestamp}`);
 
     return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));
@@ -82,7 +82,7 @@ export default class ShopifyOAuthHandler {
 
   private makeRedirectURL(
     shop: string,
-    scopes: string[],
+    scopes: AdminScopes[],
     nonce: string
   ): string {
     return `https://${shop}/admin/oauth/authorize?client_id=${
