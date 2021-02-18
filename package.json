@@ -2,6 +2,14 @@
   "name": "shopify-node-oauth",
   "version": "1.0.1",
   "description": "Shopify OAuth helper library in node.js for public/custom apps",
+  "keywords": [
+    "shopify",
+    "shopify-oauth",
+    "shopify-node-oauth",
+    "node",
+    "oauth",
+    "typescript"
+  ],
   "main": "dist/index",
   "repository": "https://github.com/codewaseem/shopify-node-oauth.git",
   "author": "codewaseem <codewaseem@gmail.com>",
