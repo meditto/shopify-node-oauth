@@ -1,3 +1,5 @@
+import type { AdminApiScopesObject } from "../types";
+
 const AdminScopesObject: AdminApiScopesObject = {
   read: {
     assigned_fulfillment_orders: "read_assigned_fulfillment_orders",

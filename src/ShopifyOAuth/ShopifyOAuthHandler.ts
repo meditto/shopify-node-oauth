@@ -1,3 +1,11 @@
+import type {
+  AdminScopes,
+  CallbackQueryObject,
+  InstallRequestQueryObject,
+  OAuthOptions,
+  ShopifyOAuthStorage,
+  TokenData,
+} from "../types";
 import { HmacValidator, makePostRequest } from "../utils";
 
 const storage: Record<string, unknown> = {};

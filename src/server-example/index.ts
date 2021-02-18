@@ -1,9 +1,8 @@
-/// <reference path="../types.d.ts" />
-
 import dotenv from "dotenv";
 import express from "express";
 import ShopifyOAuth from "../ShopifyOAuth";
 import AdminApiScopes from "../ShopifyOAuth/AdminApiScopes";
+import type { CallbackQueryObject, InstallRequestQueryObject } from "../types";
 dotenv.config();
 
 const shopifyOAuth = new ShopifyOAuth({

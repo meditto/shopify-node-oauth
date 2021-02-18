@@ -1,17 +1,17 @@
-declare type OAuthOptions = {
+export declare type OAuthOptions = {
   apiKey: string;
   apiSecret: string;
   clientCallbackURL: string;
 };
 
-declare type InstallRequestQueryObject = {
+export declare type InstallRequestQueryObject = {
   hmac: string;
   shop: string;
   timestamp: string;
 };
 
-type Modes = "read" | "write";
-type Scopes =
+export declare type Modes = "read" | "write";
+export declare type Scopes =
   | "content"
   | "themes"
   | "products"
@@ -35,9 +35,9 @@ type Scopes =
   | "translations"
   | "locales";
 
-type ReadWriteScopes = `${Modes}_${Scopes}`;
+export declare type ReadWriteScopes = `${Modes}_${Scopes}`;
 
-type OnlyReadScopes =
+export declare type OnlyReadScopes =
   | "read_product_listings"
   | "read_all_orders"
   | "read_locations"
@@ -45,11 +45,14 @@ type OnlyReadScopes =
   | "read_shopify_payments_payouts"
   | "read_shopify_payments_disputes";
 
-type OnlyWriteScopes = "write_order_edits";
+export declare type OnlyWriteScopes = "write_order_edits";
 
-type AdminScopes = ReadWriteScopes | OnlyReadScopes | OnlyWriteScopes;
+export declare type AdminScopes =
+  | ReadWriteScopes
+  | OnlyReadScopes
+  | OnlyWriteScopes;
 
-type AdminApiScopesObject = {
+export declare type AdminApiScopesObject = {
   read: {
     [P in Scopes]: `read_${P}`;
   };
@@ -63,7 +66,7 @@ type AdminApiScopesObject = {
     [P in OnlyWriteScopes]: P;
   };
 
-declare type CallbackQueryObject = {
+export declare type CallbackQueryObject = {
   code: string;
   hmac: string;
   timestamp: string;
@@ -71,12 +74,12 @@ declare type CallbackQueryObject = {
   shop: string;
 };
 
-declare type TokenData = {
+export declare type TokenData = {
   access_token: string;
   scope: string;
 };
 
-declare interface ShopifyOAuthStorage {
+export declare interface ShopifyOAuthStorage {
   set<V = unknown>(key: string, value: V): Promise<void>;
   get<V = unknown>(key: string): Promise<V>;
 }
