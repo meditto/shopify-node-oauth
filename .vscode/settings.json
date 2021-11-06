@@ -13,5 +13,10 @@
       "source.fixAll": true,
       "source.organizeImports": true
     }
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#332D1C",
+    "titleBar.activeBackground": "#474027",
+    "titleBar.activeForeground": "#FBFAF7"
   }
 }

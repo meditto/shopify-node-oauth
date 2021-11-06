@@ -41,7 +41,7 @@ export default class ShopifyOAuth {
         await handlers.onInstalled(tokenData);
       } else {
         const url = await this.oAuthHandler.getRedirectURL({
-          ...query,
+          query,
           scopes,
         });
         await handlers.redirectToShopifyInstall(url);

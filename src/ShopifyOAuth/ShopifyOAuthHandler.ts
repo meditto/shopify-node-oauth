@@ -8,8 +8,6 @@ import type {
 } from "../types";
 import { HmacValidator, makePostRequest } from "../utils";
 
-import querystring from 'querystring';
-
 const storage: Record<string, unknown> = {};
 
 const InMemoryOAuthStorage: ShopifyOAuthStorage = {
@@ -29,22 +27,27 @@ export default class ShopifyOAuthHandler {
     private oAuthStorage: ShopifyOAuthStorage = InMemoryOAuthStorage
   ) {}
 
-  stringifyQuery(query: InstallRequestQueryObject): string {
+  stringifyQuery(query: any): string {
     const orderedObj = Object.keys(query)
       .sort((val1, val2) => val1.localeCompare(val2))
-      .reduce((obj: Record<string, string | undefined>, key: keyof AuthQuery) => {
+      .reduce((obj: any, key: any) => {
         obj[key] = query[key];
         return obj;
       }, {});
-    return querystring.stringify(orderedObj);
+    return Object.keys(orderedObj)
+      .map((key) => `${key}=${orderedObj[key]}`)
+      .join("&");
   }
 
   async getRedirectURL({
     query,
     scopes,
-  }: {query: InstallRequestQueryObject, scopes: AdminScopes[] }): Promise<string> {
-    const {shop} = query
-    const {hmac,...restParams} = query
+  }: {
+    query: InstallRequestQueryObject;
+    scopes: AdminScopes[];
+  }): Promise<string> {
+    const { shop } = query;
+    const { hmac, ...restParams } = query;
     this.verifyHmac(hmac, this.stringifyQuery(restParams));
 
     return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));
