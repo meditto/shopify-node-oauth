@@ -4,7 +4,7 @@ import type {
   InstallRequestQueryObject,
   OAuthOptions,
   ShopifyOAuthStorage,
-  TokenData,
+  TokenData
 } from "../types";
 import { HmacValidator, makePostRequest } from "../utils";
 
@@ -25,7 +25,7 @@ export default class ShopifyOAuthHandler {
   constructor(
     private options: OAuthOptions,
     private oAuthStorage: ShopifyOAuthStorage = InMemoryOAuthStorage
-  ) {}
+  ) { }
 
   stringifyQuery(query: any): string {
     const orderedObj = Object.keys(query)
@@ -34,6 +34,9 @@ export default class ShopifyOAuthHandler {
         obj[key] = query[key];
         return obj;
       }, {});
+    console.log(Object.keys(orderedObj)
+      .map((key) => `${key}=${orderedObj[key]}`)
+      .join("&"));
     return Object.keys(orderedObj)
       .map((key) => `${key}=${orderedObj[key]}`)
       .join("&");
@@ -48,7 +51,8 @@ export default class ShopifyOAuthHandler {
   }): Promise<string> {
     const { shop } = query;
     const { hmac, ...restParams } = query;
-    this.verifyHmac(hmac, this.stringifyQuery(restParams));
+    const message = this.stringifyQuery(restParams);
+    this.verifyHmac(hmac, message);
 
     return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));
   }
@@ -108,11 +112,9 @@ export default class ShopifyOAuthHandler {
     scopes: AdminScopes[],
     nonce: string
   ): string {
-    return `https://${shop}/admin/oauth/authorize?client_id=${
-      this.options.apiKey
-    }&scope=${scopes.join(",")}&redirect_uri=${
-      this.options.clientCallbackURL
-    }&state=${nonce}`;
+    return `https://${shop}/admin/oauth/authorize?client_id=${this.options.apiKey
+      }&scope=${scopes.join(",")}&redirect_uri=${this.options.clientCallbackURL
+      }&state=${nonce}`;
   }
 
   private async generateNonce(shop: string) {
