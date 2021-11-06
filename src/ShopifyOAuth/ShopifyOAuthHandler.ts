@@ -8,6 +8,8 @@ import type {
 } from "../types";
 import { HmacValidator, makePostRequest } from "../utils";
 
+import querystring from 'querystring';
+
 const storage: Record<string, unknown> = {};
 
 const InMemoryOAuthStorage: ShopifyOAuthStorage = {
@@ -27,13 +29,23 @@ export default class ShopifyOAuthHandler {
     private oAuthStorage: ShopifyOAuthStorage = InMemoryOAuthStorage
   ) {}
 
+  stringifyQuery(query: InstallRequestQueryObject): string {
+    const orderedObj = Object.keys(query)
+      .sort((val1, val2) => val1.localeCompare(val2))
+      .reduce((obj: Record<string, string | undefined>, key: keyof AuthQuery) => {
+        obj[key] = query[key];
+        return obj;
+      }, {});
+    return querystring.stringify(orderedObj);
+  }
+
   async getRedirectURL({
-    hmac,
-    shop,
-    timestamp,
+    query,
     scopes,
-  }: InstallRequestQueryObject & { scopes: AdminScopes[] }): Promise<string> {
-    this.verifyHmac(hmac, `shop=${shop}&timestamp=${timestamp}`);
+  }: {query: InstallRequestQueryObject, scopes: AdminScopes[] }): Promise<string> {
+    const {shop} = query
+    const {hmac,...restParams} = query
+    this.verifyHmac(hmac, this.stringifyQuery(restParams));
 
     return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));
   }

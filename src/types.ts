@@ -5,9 +5,11 @@ export declare type OAuthOptions = {
 };
 
 export declare type InstallRequestQueryObject = {
-  hmac: string;
-  shop: string;
-  timestamp: string;
+  query: {
+    hmac: string;
+    shop: string;
+    timestamp: string;
+  }
 };
 
 export declare type Modes = "read" | "write";
