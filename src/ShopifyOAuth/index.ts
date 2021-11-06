@@ -4,7 +4,7 @@ import type {
   InstallRequestQueryObject,
   OAuthOptions,
   ShopifyOAuthStorage,
-  TokenData,
+  TokenData
 } from "../types";
 import ShopifyOAuthHandler from "./ShopifyOAuthHandler";
 
@@ -37,6 +37,7 @@ export default class ShopifyOAuth {
   }): Promise<void> {
     try {
       const tokenData = await this.oAuthHandler.getTokenData(query.shop);
+      console.log({ tokenData });
       if (tokenData && tokenData.access_token && tokenData.scope) {
         await handlers.onInstalled(tokenData);
       } else {
@@ -46,7 +47,7 @@ export default class ShopifyOAuth {
         });
         await handlers.redirectToShopifyInstall(url);
       }
-    } catch (e) {
+    } catch (e: any) {
       handlers.onError(e);
     }
   }
@@ -63,7 +64,7 @@ export default class ShopifyOAuth {
         query
       );
       await handlers.onOAuthComplete(tokenData);
-    } catch (e) {
+    } catch (e: any) {
       handlers.onError(e);
     }
   }

@@ -34,9 +34,6 @@ export default class ShopifyOAuthHandler {
         obj[key] = query[key];
         return obj;
       }, {});
-    console.log(Object.keys(orderedObj)
-      .map((key) => `${key}=${orderedObj[key]}`)
-      .join("&"));
     return Object.keys(orderedObj)
       .map((key) => `${key}=${orderedObj[key]}`)
       .join("&");
@@ -52,6 +49,7 @@ export default class ShopifyOAuthHandler {
     const { shop } = query;
     const { hmac, ...restParams } = query;
     const message = this.stringifyQuery(restParams);
+    console.log({ message });
     this.verifyHmac(hmac, message);
 
     return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));

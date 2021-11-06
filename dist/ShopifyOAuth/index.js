@@ -11,6 +11,7 @@ class ShopifyOAuth {
     async handleInstallRequest({ query, scopes, handlers, }) {
         try {
             const tokenData = await this.oAuthHandler.getTokenData(query.shop);
+            console.log({ tokenData });
             if (tokenData && tokenData.access_token && tokenData.scope) {
                 await handlers.onInstalled(tokenData);
             }

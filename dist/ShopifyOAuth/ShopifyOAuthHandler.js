@@ -23,13 +23,15 @@ class ShopifyOAuthHandler {
             return obj;
         }, {});
         return Object.keys(orderedObj)
-            .map(key => `${key}=${orderedObj[key]}`)
-            .join('&');
+            .map((key) => `${key}=${orderedObj[key]}`)
+            .join("&");
     }
     async getRedirectURL({ query, scopes, }) {
         const { shop } = query;
         const { hmac, ...restParams } = query;
-        this.verifyHmac(hmac, this.stringifyQuery(restParams));
+        const message = this.stringifyQuery(restParams);
+        console.log({ message });
+        this.verifyHmac(hmac, message);
         return this.makeRedirectURL(shop, scopes, await this.generateNonce(shop));
     }
     async getAccessTokenFromShopify(query) {
